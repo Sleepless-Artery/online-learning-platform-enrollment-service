@@ -90,7 +90,8 @@ public class EnrollmentServiceImpl implements EnrollmentService {
 
     @Override
     @Transactional
-    @CacheEvict(value = "enrollments", key = "'pair:' + #studentId.toString() + ':' + #courseId.toString()")
+    @CacheEvict(value = "enrollments", allEntries = true)
+    // @CacheEvict(value = "enrollments", key = "'pair:' + #studentId.toString() + ':' + #courseId.toString()")
     public void deleteEnrollment(Long studentId, Long courseId) {
         EnrollmentId enrollmentId = new EnrollmentId(studentId, courseId);
 
