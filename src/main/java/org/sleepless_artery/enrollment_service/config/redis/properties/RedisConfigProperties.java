@@ -15,9 +15,20 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 public class RedisConfigProperties {
 
-    @NotBlank(message = "Hostname must be defined")
     private String host;
+    private int port;
+    private String password;
 
-    @NotNull(message = "Port must be defined")
-    private Integer port;
+    private Cluster cluster = new Cluster();
+
+
+    @Getter @Setter
+    public static class Cluster {
+        private String nodes;
+        private Integer maxRedirects;
+    }
+
+    public boolean isClusterMode() {
+        return cluster != null && cluster.getNodes() != null && !cluster.getNodes().isEmpty();
+    }
 }
