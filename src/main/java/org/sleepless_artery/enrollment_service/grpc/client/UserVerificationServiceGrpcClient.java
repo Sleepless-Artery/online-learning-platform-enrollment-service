@@ -23,7 +23,7 @@ public class UserVerificationServiceGrpcClient {
     public boolean verifyUserExistence(Long userId) {
         log.info("Sending gRPC request to verify user's existence");
 
-        VerifyUserExistenceRequest request = VerifyUserExistenceRequest.newBuilder()
+        var request = VerifyUserExistenceRequest.newBuilder()
                 .setId(userId)
                 .build();
 

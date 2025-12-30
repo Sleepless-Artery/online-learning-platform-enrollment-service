@@ -20,7 +20,7 @@ public class KafkaConsumer {
     }
 
     @KafkaListener(topics = "course.courses.deleted", groupId = "enrollment-service")
-    public void listen(Long courseId) {
+    public void listenCourseDeletedEvent(Long courseId) {
         enrollmentService.deleteEnrollmentsByCourseId(courseId);
     }
 }

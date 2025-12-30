@@ -77,7 +77,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
             throw new CourseDoesNotExistException("Course with ID " + courseId + " doesn't exist");
         }
 
-        EnrollmentId enrollmentId = new EnrollmentId(studentId, courseId);
+        var enrollmentId = new EnrollmentId(studentId, courseId);
 
         if (enrollmentRepository.existsById(enrollmentId)) {
             log.warn("Enrollment already exists");
@@ -92,7 +92,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     @Transactional
     @CacheEvict(value = "enrollments", allEntries = true)
     public void deleteEnrollment(Long studentId, Long courseId) {
-        EnrollmentId enrollmentId = new EnrollmentId(studentId, courseId);
+        var enrollmentId = new EnrollmentId(studentId, courseId);
 
         if (!enrollmentRepository.existsById(enrollmentId)) {
             log.warn("Enrollment does not exist");
